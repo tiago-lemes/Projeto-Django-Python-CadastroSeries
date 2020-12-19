@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>IGTI-FLIX</title>
+        <link href="{% static 'css/crud.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/menu.css' %}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <div class="div-form">
+                    <form onsubmit="/genero" id="form-genero" method="post">
+                        {{form}}
+                        {% csrf_token %}
+                        <input type="submit" id="submit-button" class="submit-button" value="Alterar" />
+                    </form>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

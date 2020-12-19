@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="uf-8">
+    <title>IGTIFlix</title>
+    <link href="{% static 'css/menu.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/crud.css' %}" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+{% include "../menu.html" %}
+<main>
+    <div class="container">
+        <span>
+            {% if serie_records %}
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Série</th>
+                <th>Genero</th>
+                <th><img src="{% static 'images/pencil.png' %}" style="max-width:24px;max-height:24px;width:auto;height:auto;"></th>
+                <th><img src="{% static 'images/delete.png' %}" style="max-width:24px;max-height:24px;width:auto;height:auto;"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for serie in serie_records %}
+            <tr>
+                <td>{{serie.id}}</td>
+                <td>{{serie.name}}</td>
+                <td bgcolor="#f9dcc4">{{serie.idGenero}}</td>
+                <td><button class="list-button edit-button" onclick="updateItem({{serie.id}})">Alterar</button></td>
+                <td><button class="list-button edit-button" onclick="deleteItem({{serie.id}})">Excluir</button></td>
+            </tr>
+           {% endfor %}
+            </tbody>
+        </table>
+            {% else %}
+               <p>Nenhum dado cadastrado</p>
+            {% endif %}
+        </span>
+
+    <div class="conteiner-center">
+        <form onsubmit="/serie" id="form-serie" method="post">
+
+            {{form}}
+            {% csrf_token %}
+
+            <input type="submit" id="submit-button" value="Enviar" class="submit-button">
+
+
+        </form>
+    </div>
+    </div>
+
+
+
+
+</main>
+
+<script>
+    function deleteItem(id) {
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const request = new Request(
+        "/serie/delete/"+id,
+        {headers: {'X-CSRFToken': csrftoken}}
+        );
+        fetch(request, {
+            method: 'DELETE',
+            mode: 'same-origin'
+        }).then(function(response) {
+            location.replace("/serie")
+        });
+    }
+
+    function updateItem(id) {
+        location.replace("/serie/update/"+id)
+    }
+</script>
+
+</body>
+</html>
