@@ -1,7 +1,7 @@
 ```diff
 +  Repositório criado para armazenar o projeto criado no módulo 3 do Bootcamp de Python do IGTI,
 + que consiste em um CRUD simples de Gêneros de Séries e Filmes e um CRUD de Séries e Filmes,
-+ utilizando DJANGO (Python) como ferramenta.
++ utilizando DJANGO (Python) e SQLite(BD) como ferramentas.
 
 ! Vamos conversar a respeito? Me adicione no linkedin (👊)
 - https://www.linkedin.com/in/tiagolemesferreira
